@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Frontend Hackathon Leaderboard</h1>
+
+<table id="leaderboard">
+    <thead>
+        <tr>
+            <th>Team</th>
+            <th>Design</th>
+            <th>Interactivity</th>
+            <th>Adaptiveness</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Team 1</td>
+            <td>8</td>
+            <td>7</td>
+            <td>9</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>Team 2</td>
+            <td>9</td>
+            <td>8</td>
+            <td>9</td>
+            <td>26</td>
+        </tr>
+        <tr>
+            <td>Team 3</td>
+            <td>7</td>
+            <td>9</td>
+            <td>8</td>
+            <td>24</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    // Обновление таблицы с новыми данными (можно обновлять вручную или через сервер)
+    function updateLeaderboard() {
+        // пример данных
+        let teams = [
+            {name: 'Team 1', design: 8, interactivity: 7, adaptiveness: 9, total: 24},
+            {name: 'Team 2', design: 9, interactivity: 8, adaptiveness: 9, total: 26},
+            {name: 'Team 3', design: 7, interactivity: 9, adaptiveness: 8, total: 24}
+        ];
+
+        // сортировка команд по total
+        teams.sort((a, b) => b.total - a.total);
+
+        // обновление HTML таблицы
+        let tbody = document.querySelector("#leaderboard tbody");
+        tbody.innerHTML = ''; // очистка таблицы
+        teams.forEach(team => {
+            let row = `<tr>
+                          <td>${team.name}</td>
+                          <td>${team.design}</td>
+                          <td>${team.interactivity}</td>
+                          <td>${team.adaptiveness}</td>
+                          <td>${team.total}</td>
+                      </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    // обновление таблицы каждые 5 минут
+    setInterval(updateLeaderboard, 300000);
+</script>
+
+</body>
+</html>
